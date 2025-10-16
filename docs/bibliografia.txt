@@ -1,0 +1,12 @@
+ENLACE DE SIMULADOR GUÍA
+  https://www.101computing.net/enigma/enigma-M3.html
+
+
+PÁGINAS INFORMATIVAS
+
+1. Enigma (máquina) - WIKIPEDIA
+  https://es.wikipedia.org/wiki/Enigma_(máquina)#Simuladores
+  Ejemplo de mensajes y configuración
+
+2. Implementación del cifrado Enigma: Parte 1: Cómo funciona
+  https://charlesreid1-github-io.translate.goog/enigma-cipher-implementation-part-1-how-it-works.html?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=sge
