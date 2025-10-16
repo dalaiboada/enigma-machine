@@ -1,0 +1,41 @@
+:root{--bg:#0f1724;--panel:#0b1220;--accent:#ffd166;--muted:#94a3b8;--card:#0b1220}
+
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial;background:linear-gradient(180deg,#071028 0%, #071b2a 100%);color:#e6eef6}
+    .app{max-width:1100px;margin:24px auto;padding:20px}
+    h1{margin:0 0 8px;font-size:20px}
+    .layout{display:grid;grid-template-columns:360px 1fr;gap:18px}
+    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:14px;box-shadow:0 8px 20px rgba(2,6,23,0.6)}
+    .small{font-size:13px;color:var(--muted)}
+
+    .keyboard{display:grid;grid-template-columns:repeat(13,1fr);gap:6px;margin-top:12px}
+    .key{background:#071328;border-radius:8px;padding:10px;text-align:center;cursor:pointer;user-select:none;border:1px solid rgba(255,255,255,0.03)}
+    .key:active{transform:translateY(1px)}
+
+    .rotor-row{display:flex;gap:8px;align-items:center}
+    .rotor{flex:1;background:linear-gradient(180deg,#081226,#0b1830);border-radius:10px;padding:10px;text-align:center}
+    .dial{display:inline-block;padding:8px 10px;border-radius:6px;background:rgba(255,255,255,0.03);font-weight:700}
+    .label{font-size:12px;color:var(--muted)}
+
+    .panel{display:flex;gap:12px;margin-top:12px}
+    .plugboard{display:flex;flex-wrap:wrap;gap:8px}
+    .pair{background:#081727;padding:6px;border-radius:8px;border:1px dashed rgba(255,255,255,0.02)}
+
+    .lights{display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:rgba(0,0,0,0.12);border-radius:10px}
+    .lamp{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#072235;color:#7f9fb9;font-weight:700}
+    .lamp.on{background:var(--accent);color:#071226}
+
+    .path{margin-top:12px}
+    .path .step{font-size:13px;color:var(--muted);}
+
+    .controls{display:flex;gap:8px;align-items:center}
+    select,input[type="text"]{background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit;padding:6px;border-radius:6px}
+    .btn{padding:8px 12px;border-radius:8px;background:#0b2a3f;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+    footer{margin-top:14px;font-size:13px;color:var(--muted)}
+
+    /* path visualization */
+    .wire{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{padding:4px 6px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    .highlight{background:linear-gradient(90deg,rgba(255,209,102,0.2),rgba(255,209,102,0.05));border-color:rgba(255,209,102,0.3)}
+
+    .config{display:grid;grid-template-columns:1fr 1fr;gap:8px}
