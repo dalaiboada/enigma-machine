@@ -5,11 +5,9 @@ import { getIndice, getCaracter, convertirAIndices, registrarPaso } from "./util
 // --- POSICIONES DE ROTORES: Patrón Observer ---
 const observadoresPosiciones = [];
 
-function suscribirPosiciones(callback) {
-  observadoresPosiciones.push(callback);
-}
+const suscribirPosiciones = callback => observadoresPosiciones.push(callback);
 
-function notificarPosiciones() {
+const notificarPosiciones = () => {
   //Registra las posiciones actuales de los rotores
   const posiciones = {
     izquierdo: estado.rotorIzquierdo.posicion,
@@ -23,11 +21,9 @@ function notificarPosiciones() {
 
 //---- LOGICA DE ENCRIPTACION ----
 
-function cambiarEnchufe(caracter) {
-  return estado.enchufes[caracter] || caracter;
-}
+const cambiarEnchufe = caracter => estado.enchufes[caracter] || caracter;
 
-function avanzarRotor(indiceLetra, rotor) {
+const avanzarRotor = (indiceLetra, rotor) => {
   const cableadoRotor = convertirAIndices(ROTORES[rotor.tipo].cableado);
   const entrada = (indiceLetra + rotor.posicion) % 26;
   const salidaInterna = cableadoRotor[entrada];
@@ -36,7 +32,7 @@ function avanzarRotor(indiceLetra, rotor) {
   return salidaFinal;
 }
 
-function retrocederRotor(indiceLetra, rotor) {
+const retrocederRotor = (indiceLetra, rotor) => {
   const cableadoRotor = convertirAIndices(ROTORES[rotor.tipo].cableado);
   const entrada = (indiceLetra + rotor.posicion) % 26;
   const salidaInterna = cableadoRotor.indexOf(entrada);
@@ -45,14 +41,14 @@ function retrocederRotor(indiceLetra, rotor) {
   return salidaFinal;
 }
 
-function reflejar(indiceLetra) {
+const reflejar = indiceLetra => {
   const reflector = REFLECTORES[estado.reflector];
   const indiceSalida = getIndice(reflector[indiceLetra]);
 
   return indiceSalida;
 }
 
-function moverRotores() {
+const moverRotores = () => {
   const { rotorDerecho, rotorMedio, rotorIzquierdo } = estado;
 
   const muescaDerecho = getIndice(ROTORES[rotorDerecho.tipo].muesca);
@@ -69,10 +65,10 @@ function moverRotores() {
   }
 }
 
-function encriptar(caracter) {
+const encriptar = caracter => {
   const pasos = [];  
 
-  // 0. Avance de rotores
+  // 0. Mover rotores
   moverRotores();
   notificarPosiciones();
 

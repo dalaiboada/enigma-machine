@@ -10,6 +10,7 @@ function actualizarUI(posiciones) {
 
 suscribirPosiciones(actualizarUI);
 
+console.clear();
 console.log('\n--- Simulación de encriptación ---');
 const letra = 'A';
 console.log(`Encriptando letra: ${letra} -> ${encriptar(letra).salidaLetra}`);
