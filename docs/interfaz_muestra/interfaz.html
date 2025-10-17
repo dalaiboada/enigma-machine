@@ -75,10 +75,183 @@
           <button class="btn" id="randomize">Aleatorizar posiciones</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 
   <script src="interfaz.js"></script>
+  <script>
+    const ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    const ROTORES = {
+      I:	 { cableado: "EKMFLGDQVZNTOWYHXUSPAIBRCJ", muesca: "Q" },
+      II:	 { cableado: "AJDKSIRUXBLHWTMCQGZNPYFVOE", muesca: "E" }, 
+      III: { cableado: "BDFHJLCPRTXVZNYEIWGAKMUSQO", muesca: "V" },
+      IV:  { cableado: "ESOVPZJAYQUIRHXLNFTGKDCMWB", muesca: "J" },
+      V:   { cableado: "VZBRGITYUPSDNHLXAWMJQOFECK", muesca: "Z" }
+    };
+
+    const REFLECTORES = {
+      B: "YRUHQSLDPXNGOKMIEBFZCWVJAT",
+      C: "FVPJIAOYEDRZXWGCTKUQSBNMHL"
+    };
+
+    let estado = {
+      rotorDerecho:{ tipo:'III', posicion: 0 }, //20
+      rotorMedio:  { tipo:'II', posicion: 0 },   //3
+      rotorIzquierdo: { tipo:'I', posicion: 0 }, //16
+      reflector: 'B',
+      enchufes: {'A':'G', 'G':'A', 'C':'F', 'F':'C' } // Ejemplo,
+    };
+  
+  function getIndice(caracter, ALFABETO){ return ALFABETO.indexOf(caracter); }
+  function getCaracter(indice, ALFABETO){ return ALFABETO[(indice + 26) % 26]; }
+
+  function convertirAIndices(cadena, ALFABETO) { 
+    return cadena.split('').map(caracter => 
+      getIndice(caracter, ALFABETO)
+    );
+  }
+
+  function cambiarEnchufe(caracter) {
+    return estado.enchufes[caracter] || caracter;
+  }
+
+  function avanzarRotor(indiceLetra, rotor) {
+    const cableadoRotor = convertirAIndices(ROTORES[rotor.tipo].cableado, ALFABETO);
+    const entrada = (indiceLetra + rotor.posicion) % 26;
+    const salidaInterna = cableadoRotor[entrada];
+    const salidaFinal = (salidaInterna - rotor.posicion + 26) % 26;
+
+    return salidaFinal;
+  }
+
+  function retrocederRotor(indiceLetra, rotor) {
+    const cableadoRotor = convertirAIndices(ROTORES[rotor.tipo].cableado, ALFABETO);
+    const entrada = (indiceLetra + rotor.posicion) % 26;
+    const salidaInterna = cableadoRotor.indexOf(entrada);
+    const salidaFinal = (salidaInterna - rotor.posicion + 26) % 26;
+
+    return salidaFinal;
+  }
+
+  function reflejar(indiceLetra) {
+    const reflector = REFLECTORES[estado.reflector];
+    const indiceSalida = getIndice(reflector[indiceLetra], ALFABETO);
+
+    return indiceSalida;
+  }
+
+  function avanzarRotores() {
+    console.log("\nAVANZAR ROTORES");
+
+    const { rotorDerecho: right, rotorMedio: mid, rotorIzquierdo: left } = estado;
+      console.log("Rotor derecho: " + right.posicion);
+      console.log("Rotor medio: " + mid.posicion);
+      console.log("Rotor izquierdo: " + left.posicion);
+
+    const rightNotch = getIndice(ROTORES[right.tipo].muesca, ALFABETO);
+    const midNotch = getIndice(ROTORES[mid.tipo].muesca, ALFABETO);
+
+      console.log("\nMuesca derecha: " + rightNotch);
+      console.log("Muesca medio: " + midNotch);
+  
+    // El rotor derecho siempre avanza
+    right.posicion = (right.posicion + 1) % 26;
+      console.log("Rotor derecho avanzó: " + right.posicion);
+    
+    // El rotor medio avanza si:
+    // 1. El derecho está en su muesca (antes del paso), O
+    // 2. El medio está en su muesca
+    if (right.posicion === rightNotch || mid.posicion === midNotch) {
+      mid.posicion = (mid.posicion + 1) % 26;
+        console.log("Rotor medio avanzó:" + mid.posicion);
+
+      // El izquierdo avanza si el medio está en su muesca
+      if (mid.posicion === midNotch) {
+        left.posicion = (left.posicion + 1) % 26;
+          console.log("Rotor izquierdo avanzó: " + left.posicion);
+      }
+    }
+
+    console.log("\nRotor derecho: " + right.posicion);
+    console.log("Rotor medio: " + mid.posicion);
+    console.log("Rotor izquierdo: " + left.posicion);
+  }
+  
+  function encriptar(caracter) {
+    // 1) Mover rotores antes de encriptar
+      avanzarRotores();
+      //renderPositions();
+
+    // 2) Entrada en el PLUGBOARD
+      const path = [];  // Array de pasos 
+      const plugLetra = cambiarEnchufe(caracter);
+
+      path.push({stage:'plug-in', val:plugLetra});
+
+    // 3) Viaje de DERECHA a IZQUIERDA
+      let indiceActual = getIndice(plugLetra, ALFABETO);
+
+      // [Rotor Derecho]
+      indiceActual = avanzarRotor(indiceActual, estado.rotorDerecho);
+      path.push({stage:'Derecho →', val:getCaracter(indiceActual, ALFABETO)});
+
+      // [Rotor Medio]
+      indiceActual = avanzarRotor(indiceActual, estado.rotorMedio);
+      path.push({stage:'Medio →', val:getCaracter(indiceActual, ALFABETO)});
+
+      // [Rotor Izquierdo]
+      indiceActual = avanzarRotor(indiceActual, estado.rotorIzquierdo);
+      path.push({stage:'Izquierdo →', val:getCaracter(indiceActual, ALFABETO)});
+
+
+    // 4) Reflejar
+      indiceActual = reflejar(indiceActual);
+      path.push({stage:'Reflejar', val:getCaracter(indiceActual, ALFABETO)});
+
+
+    // 5) Viaje de IZQUIERDA a DERECHA
+      // [Rotor Izquierdo]
+      indiceActual = retrocederRotor(indiceActual, estado.rotorIzquierdo);
+      path.push({stage:'Izquierdo ←', val:getCaracter(indiceActual, ALFABETO)});
+
+      // [Rotor Medio]
+      indiceActual = retrocederRotor(indiceActual, estado.rotorMedio);
+      path.push({stage:'Medio ←', val:getCaracter(indiceActual, ALFABETO)});
+
+      // [Rotor Derecho]
+      indiceActual = retrocederRotor(indiceActual, estado.rotorDerecho);
+      path.push({stage:'Derecho ←', val:getCaracter(indiceActual, ALFABETO)});
+
+
+    // 6) Salida en el PLUGBOARD
+      const salidaLetra = cambiarEnchufe(getCaracter(indiceActual, ALFABETO));
+      path.push({stage:'plug-out', val:salidaLetra});
+
+    return {salidaLetra, path};
+  }
+
+  //AVANZAR ROTOR
+  const letra = "A";
+
+  //console.log(`AVANZAR ROTOR: ${letra} -> ${getCaracter(avanzarRotor( getIndice(letra, ALFABETO), { tipo:'III', posicion: 1 }), ALFABETO)}`);
+
+  //RETROCEDER ROTOR
+  const letra2 = "A"; 
+
+  //console.log(`RETROCEDER ROTOR: ${letra2} -> ${getCaracter(retrocederRotor( getIndice(letra2, ALFABETO), { tipo:'III', posicion: 1 }), ALFABETO)}`);
+
+  //REFLEJAR
+  const letra3 = "A";
+
+  //console.log(`REFLEJAR: ${letra3} -> ${getCaracter(reflejar( getIndice(letra3, ALFABETO)), ALFABETO)}`);
+  
+  //Avanzar rotores
+  //avanzarRotores();
+
+  //Encriptar
+  console.log("ENCRIPTACIÓN: ", encriptar("A"));
+  </script>
 </body>
 </html>
