@@ -1,0 +1,34 @@
+INTERFAZ
+    [ ] Realizar wireframe
+    [ ] Diseño base
+    [ ] Página principal
+        [ ] Modal de configuración
+        [ ] Modal de buzón de mensajes
+        [ ] Máquina Enigma
+            [ ] Plugboard
+            [ ] Teclado
+            [ ] Teclado de lamparas
+            [ ] Rotores
+        [ ] Pantallas de salida
+            [ ] Texto plano
+            [ ] Texto encriptado
+        [ ] Botón para enviar mensaje
+
+BACKEND
+    [ ] Elegir base de datos
+    [ ] Diseño de la base de datos
+        [ ] Usuarios
+        [ ] Mensajes
+    [ ] Autenticación
+    [ ] Endpoints de la API (GET POST para mensajes)
+
+LÓGICA
+    [ ] Investigar la lógica de la máquina Enigma
+    [ ] Determinar las constantes a utilizar
+    [ ] Realizar la lógica de encriptado
+    [ ] Realizar la lógica para que se actualice la interfaz cuando se encripte una letra
+
+DEPLOY
+    [ ] ?
+
+
