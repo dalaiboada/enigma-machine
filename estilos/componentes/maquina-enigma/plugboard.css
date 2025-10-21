@@ -1,0 +1,22 @@
+.plugboard_contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plugboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+  width: 90%;
+  height: 120px;
+}
+
+.plugboard div {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-cyan);
+  border-radius: 50%;
+  background: rgba(0,255,255,0.05);
+  box-shadow: inset 0 0 6px rgba(0,255,255,0.4);
+}
