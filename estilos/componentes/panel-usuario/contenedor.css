@@ -1,0 +1,16 @@
+.panel-usuario_contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  width: 380px;
+}
+
+.panel-usuario_contenedor section {
+  flex: 1;
+}
+
+.panel-usuario_contenedor h1 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
