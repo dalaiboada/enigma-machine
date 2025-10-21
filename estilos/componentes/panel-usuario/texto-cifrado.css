@@ -1,0 +1,279 @@
+.contenedor-papel {
+  width: 100%;
+  max-width: 800px;
+  padding: 15px;
+  background-color: #f5f1e6;
+  position: relative;
+  border: none;
+ 
+  border-radius: 5px;
+
+  overflow: hidden;
+	
+	min-width: 300px;
+	box-shadow: 
+		inset 6px 6px 12px rgba(0,0,0,0.5), 
+		inset -6px -6px 12px rgba(255,255,255,0.02), 
+		6px 6px 16px rgba(0,0,0,0.4);
+
+	min-height: 250px;
+
+	display: flex;
+	flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Textura base del papel */
+.contenedor-papel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Patrón de líneas sutiles */
+    linear-gradient(90deg, 
+      rgba(130,120,110,0.05) 1px, 
+      transparent 1px),
+    linear-gradient(0deg, 
+      rgba(130,120,110,0.05) 1px, 
+      transparent 1px),
+    /* Efecto de grano/textura */
+    radial-gradient(circle at 50% 50%, 
+      rgba(0,0,0,0) 0%, 
+      rgba(0,0,0,0.03) 100%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Efecto de irregularidades en los bordes */
+.contenedor-papel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Irregularidad superior */
+    linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(200,190,170,0.2) 50%, 
+      transparent 100%),
+    /* irregularidad inferior */
+    linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(180,170,150,0.2) 50%, 
+      transparent 100%);
+  background-size: 100% 2px, 100% 2px;
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contenedor-papel h2 {
+  color: #3e2723;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+  margin-top: 0;
+  font-weight: 500;
+  letter-spacing: 2px;
+	font-family: 'Courier New', Courier, monospace;
+	text-shadow: 0 0;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* Contenido del papel */
+.contenido {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* botoooon */
+.boton-papel {
+  position: relative;
+  padding: 10px 8px;
+  background-color: #e8dfca;
+  border: none;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  color: #443d3c;
+  cursor: pointer;
+  box-shadow: 
+    0 2px 5px rgba(0,0,0,0.1),
+    0 5px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+        
+/* Textura base del papel para el botón */
+.boton-papel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Patrón de líneas sutiles */
+    linear-gradient(90deg, 
+      rgba(130,120,110,0.05) 1px, 
+      transparent 1px),
+    linear-gradient(0deg, 
+      rgba(130,120,110,0.05) 1px, 
+      transparent 1px),
+    /* Efecto de grano/textura */
+    radial-gradient(circle at 50% 50%, 
+      rgba(0,0,0,0) 0%, 
+      rgba(0,0,0,0.03) 100%);
+  background-size: 15px 15px, 15px 15px, 100% 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Borde de papel desgastado */
+.boton-papel::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 1px solid rgba(160, 140, 120, 0.4);
+    box-shadow: 
+      0 0 0 1px rgba(120, 100, 80, 0.2),
+      inset 0 0 15px rgba(120, 100, 80, 0.1);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Efecto de irregularidades en los bordes */
+.boton-papel .borde-irregular {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+  /* Irregularidad superior */
+  linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(200,190,170,0.3) 20%, 
+    rgba(180,170,150,0.4) 40%,
+    rgba(200,190,170,0.3) 60%,
+    transparent 80%,
+    transparent 100%),
+  /* Irregularidad inferior */
+  linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(180,170,150,0.3) 30%, 
+    rgba(200,190,170,0.4) 50%,
+    rgba(180,170,150,0.3) 70%,
+    transparent 90%,
+    transparent 100%),
+  /* Irregularidad izquierda */
+  linear-gradient(0deg, 
+    transparent 0%, 
+    rgba(190,180,160,0.3) 20%, 
+    rgba(170,160,140,0.4) 40%,
+    rgba(190,180,160,0.3) 60%,
+    transparent 80%,
+    transparent 100%),
+  /* Irregularidad derecha */
+  linear-gradient(0deg, 
+    transparent 0%, 
+    rgba(170,160,140,0.3) 30%, 
+    rgba(190,180,160,0.4) 50%,
+    rgba(170,160,140,0.3) 70%,
+    transparent 90%,
+    transparent 100%);
+  background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Efecto de manchas de café/té */
+.boton-papel .mancha {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.05;
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(0.5px);
+}
+
+.boton-papel .mancha-1 {
+    width: 40px;
+    height: 25px;
+    background: #8d6e63;
+    top: 15%;
+    right: 10%;
+    transform: rotate(15deg);
+}
+
+.boton-papel .mancha-2 {
+    width: 25px;
+    height: 15px;
+    background: #5d4037;
+    bottom: 20%;
+    left: 10%;
+    transform: rotate(-10deg);
+}
+
+/* Texto del botón */
+.boton-papel .texto-boton {
+    position: relative;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Efecto de esquinas dobladas */
+.boton-papel .esquina-doblada {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.boton-papel .esquina-superior-izq {
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(180,170,150,0.3) 50%);
+}
+
+.boton-papel .esquina-inferior-der {
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(315deg, transparent 50%, rgba(180,170,150,0.3) 50%);
+}
+
+/* Estados del botón */
+.boton-papel:hover {
+  transform: translateY(-2px);
+  background-color: #d6c9a9;
+  color: #3e2723;
+}
+
+.texto-cifrado {
+  padding: 5px;
+	font-size: 1rem;
+	line-height: 1.2;
+	overflow-y: auto;
+	max-height: 100%;
+	font-family: 'Courier New', Courier, monospace;
+	color: #3e2723;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	margin-bottom: 10px;
+	scrollbar-color:  #68413af8 #e3dccb;
+	scrollbar-width: thin;
+}

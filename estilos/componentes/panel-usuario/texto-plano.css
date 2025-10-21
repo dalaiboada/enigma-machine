@@ -1,0 +1,43 @@
+.texto-plano_contenedor {
+  width: 100%;
+  min-height: 250px;
+  background: radial-gradient(circle at center, rgba(0,255,255,0.2), transparent 70%);
+	border: none;
+  border-radius: 6px;
+  position: relative;
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.texto-plano_contenedor svg {
+  display: block; 
+}
+
+.texto-plano {
+  position: absolute; 
+  top: 60px;          
+  left: 50px;         
+  right: 40px;        
+  bottom: 65px;       
+  color: #00ffff;         
+  background-color: transparent; 
+  padding: 5px;
+
+	overflow-y: auto;
+	scrollbar-color: #00ffff #172a3a; 
+  
+  scrollbar-width: thin;
+	word-break: break-all;
+}
+
+.texto-plano p {
+	font-family: 'Share Tech Mono', monospace;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 1.5;
+	font-size: 14px;
+}
