@@ -1,0 +1,7 @@
+.maquina_contenedor {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  gap: 15px;
+  margin-right: 15px;
+}
