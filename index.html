@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ENIGMA MACHINE M3 1934</title>
+</head>
+<body>
+	<main>
+		<!-- Máquina -->
+		<section class="maquina_contenedor">
+			<h1>MÁQUINA ENIGMA M3 1934</h1>
+
+			<!-- Rotores -->
+			<section class="rotores_contenedor">
+				<h2>Rotores</h2>
+
+				<div class="rotores">
+					<div class="rotor-contenedor">
+						<div class="indicador-posicion"></div>
+
+						<div class="rotor" id="rotor">
+							<div class="circulo-centro">I</div>
+							<!-- insertar con javascript -->
+						</div>
+					</div>
+
+					<div class="rotor-contenedor">
+						<div class="indicador-posicion"></div>
+
+						<div class="rotor" id="rotor">
+							<div class="circulo-centro">II</div>
+							<!-- insertar con javascript -->
+						</div>
+					</div>
+
+					<div class="rotor-contenedor">
+						<div class="indicador-posicion"></div>
+
+						<div class="rotor" id="rotor">
+							<div class="circulo-centro">III</div>
+							<!-- insertar con javascript -->
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Lampboard -->
+			<section class="lampboard_contenedor">
+				<h2>Lampboard</h2>
+
+				<div class="lampboard" id="lampboard"></div>
+			</section>
+
+			<!-- Teclado -->
+			<section class="teclado_contenedor">
+				<div class="teclado">
+					<div class="teclado-fila"></div>
+					<div class="teclado-fila"></div>
+					<div class="teclado-fila"></div>
+				</div>
+			</section>
+			
+			<!-- Plugboard -->
+			<section class="plugboard_contenedor">
+				<h2>Plugboard</h2>
+
+				<div class="plugboard"></div>
+		</section>
+
+	</section>
+
+	</main>
+
+	<script type="module" src="./scripts/renderizar-maquina.js"></script>
+</body>
+</html>

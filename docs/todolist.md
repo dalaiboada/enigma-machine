@@ -3,7 +3,7 @@
 #### INTERFAZ
 
 * [X] Realizar wireframe
-* [ ] Diseño base
+* [X] Diseño base
 * [ ] Página principal
   * [ ] Modal de configuración
   * [ ] Modal de buzón de mensajes
