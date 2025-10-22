@@ -6,7 +6,7 @@ const TECLADO = [
   ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
 ];
 
-const renderiarTeclado = () => {
+const renderizarTeclado = () => {
 	const $tecladoFilas = document.querySelectorAll('.teclado-fila');
 
 	TECLADO.forEach((filaArray, i) => {
@@ -22,18 +22,27 @@ const renderizarLampboard = () => {
   const $lampboard = document.getElementById('lampboard');
   const fragmento = document.createDocumentFragment();
   
-  [...ALFABETO].forEach(letter => {
+  [...ALFABETO].forEach(letra => {
     const $lamp = document.createElement('div');
     $lamp.classList.add('lamp');
     
-    $lamp.textContent = letter;
+    $lamp.textContent = letra;
     fragmento.appendChild($lamp);
   });
   
   $lampboard.appendChild(fragmento);
 }
 
+/* 
+<label class="plug">
+  <input type="checkbox">
+  <div class="marcador">
+    <span class="letra">A</span>
+  </div>
+</label>
 
+Label.plug(input[type="checkbox"] + div.marcador(span.letra))
+*/
 const renderizarPlugboard = () =>  {
   const fragmento = document.createDocumentFragment();
   const $plugboard = document.querySelector('.plugboard');
@@ -63,7 +72,7 @@ const renderizarPlugboard = () =>  {
   $plugboard.appendChild(fragmento);
 }
 
-renderiarTeclado();
+renderizarTeclado();
 renderizarLampboard();
 renderizarPlugboard();
 
