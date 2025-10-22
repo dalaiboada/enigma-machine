@@ -79,48 +79,22 @@
 			<section class="texto-plano_contenedor">
 				<svg viewBox="0 0 1000 700" style="width:100%; height:auto;">
 					<polygon
-						
-						points="
-						25,50 
-						600,50 
-						650,0 
-						950,0 
-						1000,100 
-						1000,400 
-						950,450 
-						950,600 
-						900,650 
-						600,650 
-						550,700
-						150,700
-						75,650
-						75,350
-						25,300
-						25,100
-						"
-						
+						points=
+						"25,50 600,50 650,0 950,0 1000,100 1000,400 950,450 
+						950,600 900,650 600,650  550,700 150,700 75,650 75,350 25,300 25,100"
 						style="stroke:#00ffff; stroke-width:5; fill:none;"
 					/>
 						
 					<polygon
-
-						points=" 
-						250,25
-						600, 25
-						625, 0
-						275, 0
-						"
-
+						points="250,25 600,25 625,0 275,0"
 						style="stroke:#00ffff; stroke-width: 1; fill:#00ffff;"
 					/>
 				</svg>
 
 				<div class="texto-plano">
-					<p>
-						>_ TEXTO PLANO
-					</p>
+					<p>>_ TEXTO PLANO</p>
 
-					<p style="color: #ccc;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+					<p style="color: #ccc;" id="texto-plano"></p>
 				</div>
 			</section>
 
@@ -158,5 +132,25 @@
 	</main>
 
 	<script type="module" src="./scripts/renderizar-maquina.js"></script>
+
+	<script>
+		const $textoPlano = document.getElementById('texto-plano');
+		
+		document.addEventListener('keydown', event => {
+			const tecla = event.key;
+    	const textoActual = $textoPlano.innerText;
+			
+			switch (tecla) {
+    		case 'Backspace': $textoPlano.innerText = textoActual.slice(0, -1); break;
+    		case 'Enter': $textoPlano.innerText += '\n'; break;
+    		case ' ': $textoPlano.innerText += ' '; break;
+
+    		default:
+					if (tecla.length === 1 && /^[a-zA-Z0-9.,!\-() ]$/.test(tecla)) 
+						$textoPlano.innerText += tecla.toUpperCase();
+      	break;
+			}
+		});
+	</script>
 </body>
 </html>

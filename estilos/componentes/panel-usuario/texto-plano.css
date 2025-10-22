@@ -40,4 +40,23 @@
 	letter-spacing: 1px;
 	line-height: 1.5;
 	font-size: 14px;
+  white-space: pre-wrap
+}
+
+/* Cursor */
+#texto-plano::after {
+  content: "|";
+  color: var(--color-text);
+  
+  animation: parpadeo 1s infinite step-end;
+}
+
+
+@keyframes parpadeo {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0; 
+  }
 }
