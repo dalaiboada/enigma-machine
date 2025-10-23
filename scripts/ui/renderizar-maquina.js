@@ -36,5 +36,4 @@ const renderizarLampboard = () => {
 
 renderizarTeclado();
 renderizarLampboard();
-//renderizarPlugboard();
 
