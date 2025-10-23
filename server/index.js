@@ -8,6 +8,8 @@ import { createClient } from "@libsql/client";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+
+//---------------- CONFIG VARIABLES ----------------//
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,12 +17,14 @@ dotenv.config();
 
 const app = express();
 const server = createServer(app);
+const port = process.env.PORT || 3000;
 const io = new Server(server,{
   connectionStateRecovery: {
     maxDisconnectionDuration: 2 * 60 * 1000,
   }
 });
 
+//---------------- DATABASE ----------------//
 const db = createClient({
   url: process.env.DATABASE_URL,
   authToken: process.env.DATABASE_AUTH_TOKEN,
@@ -34,10 +38,18 @@ await db.execute(`
   )
 `);
 
+//---------------- MIDDLEWARES ----------------//
+
 app.use(cors());
 app.use(express.json());
 
-// Logica de conexion del socket
+// Rutas estaticas
+app.use(express.static(join(__dirname, '../')));
+app.use(express.static(join(__dirname, '../estilos')));
+app.use(express.static(join(__dirname, '../scripts')));
+
+
+//---------------- SOCKETS ----------------//
 io.on('connection', async (socket) => {
   console.log('a user has connected!');
   const username = socket.handshake.auth.username ?? "Anonymous";
@@ -58,19 +70,24 @@ io.on('connection', async (socket) => {
       return;
     }
 
-    io.emit('chat message', msg, result.lastInsertRowid.toString(), username);
+    console.log(msg);
+    io.emit('chat message', { msg, serverOffset: result.lastInsertRowid.toString(), username });
   });
 
 
   if (!socket.recovered) {
     try {
       const results = await db.execute({
-        sql: 'SELECT * FROM messages WHERE id > (:id)',
+        sql: 'SELECT * FROM messages WHERE id > (:id) ORDER BY id DESC',
         args: [socket.handshake.auth.serverOffset ?? 0],
       });
 
       results.rows.forEach((row) => {
-        socket.emit('chat message', row.content, row.id, row.username);
+        socket.emit('chat message', { 
+          msg: row.content, 
+          serverOffset: row.id, 
+          username: row.username
+        });
       });
     } catch (error) {
       console.error(error);
@@ -78,15 +95,11 @@ io.on('connection', async (socket) => {
   }
 });
 
-const port = process.env.PORT || 3000;
 
+//---------------- ROUTES ----------------//
 app.get('/', (req, res) => {
   res.sendFile(process.cwd() + '/index.html');
 });
-
-app.use(express.static(join(__dirname, '../')));
-app.use(express.static(join(__dirname, '../estilos')));
-app.use(express.static(join(__dirname, '../scripts')));
 
 // Obtener todos los mensajes
 app.get('messages', async (req, res) => {
@@ -117,6 +130,7 @@ app.post('messages', async (req, res) => {
   }
 });
 
+//---------------- SERVER ----------------//
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

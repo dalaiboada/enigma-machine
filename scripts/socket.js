@@ -1,4 +1,4 @@
-import { io } from 'socket.io-client';
+import { io } from '/node_modules/socket.io-client/dist/socket.io.esm.min.js';
 
 const getUsername = async () => {
 	let username = localStorage.getItem('username');
@@ -21,6 +21,20 @@ socket.on('connect', () => {
 	console.log('connected');
 });
 
+const enviarBtn = document.getElementById('enviar-btn');
+enviarBtn.addEventListener('click', () => {
+	console.log('enviando');
+	const msg = document.getElementById('texto-plano').innerText;
+	console.log(msg);
+	socket.emit('chat message', msg);
+	document.getElementById('texto-plano').innerText = '';
+});
+
 socket.on('chat message', async ({ msg, serverOffset, username }) => {
 	console.log(msg, serverOffset, username);
+	const buzon = document.getElementById('buzon');
+	const li = document.createElement('li');
+	li.innerText = msg;
+	buzon.prepend(li);
+	buzon.scrollTop = 0;
 });
