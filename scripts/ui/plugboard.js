@@ -8,10 +8,12 @@ const renderizarPlugboard = () =>  {
   [...ALFABETO].forEach(letra => {
     
     const $plug = document.createElement('label');
-    $plug.classList.add('plug')
+    $plug.classList.add('plug');
+    $plug.setAttribute('data-letra', letra);
     
     const $checkbox = document.createElement('input');
     $checkbox.type = 'checkbox';
+    $checkbox.id = `plug-${letra}`;
     
     const $marcador = document.createElement('div');
     $marcador.classList.add('marcador');
@@ -28,4 +30,7 @@ const renderizarPlugboard = () =>  {
   });
   
   $plugboard.appendChild(fragmento);
+  /* TODO: Agregar evento para actualizar el estado de los plugs */
 }
+
+renderizarPlugboard();

@@ -43,7 +43,7 @@ const renderizarLampboard = () => {
 
 Label.plug(input[type="checkbox"] + div.marcador(span.letra))
 */
-const renderizarPlugboard = () =>  {
+/* const renderizarPlugboard = () =>  {
   const fragmento = document.createDocumentFragment();
   const $plugboard = document.querySelector('.plugboard');
   $plugboard.innerHTML = '';
@@ -71,9 +71,9 @@ const renderizarPlugboard = () =>  {
   });
   
   $plugboard.appendChild(fragmento);
-}
+} */
 
 renderizarTeclado();
 renderizarLampboard();
-renderizarPlugboard();
+//renderizarPlugboard();
 
