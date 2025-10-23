@@ -5,6 +5,12 @@ import { Server } from "socket.io";
 import { createServer } from "node:http";
 import { createClient } from "@libsql/client";
 
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 dotenv.config();
 
 const app = express();
@@ -78,6 +84,11 @@ app.get('/', (req, res) => {
   res.sendFile(process.cwd() + '/index.html');
 });
 
+app.use(express.static(join(__dirname, '../')));
+app.use(express.static(join(__dirname, '../estilos')));
+app.use(express.static(join(__dirname, '../scripts')));
+
+// Obtener todos los mensajes
 app.get('messages', async (req, res) => {
   try {
     const results = await db.execute({
@@ -90,6 +101,7 @@ app.get('messages', async (req, res) => {
   }
 });
 
+// Enviar un nuevo mensaje
 app.post('messages', async (req, res) => {
   try {
     const { content, username } = req.body;

@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "app-test.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "node server/index.js --watch",
+    "dev": "node --watch server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
