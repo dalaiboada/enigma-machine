@@ -46,6 +46,7 @@ Label.plug(input[type="checkbox"] + div.marcador(span.letra))
 const renderizarPlugboard = () =>  {
   const fragmento = document.createDocumentFragment();
   const $plugboard = document.querySelector('.plugboard');
+  $plugboard.innerHTML = '';
   
   [...ALFABETO].forEach(letra => {
     
