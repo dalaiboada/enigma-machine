@@ -1,6 +1,5 @@
 .contenedor-papel {
   width: 100%;
-  max-width: 800px;
   padding: 15px;
   background-color: #f5f1e6;
   position: relative;
@@ -10,13 +9,12 @@
 
   overflow: hidden;
 	
-	min-width: 300px;
 	box-shadow: 
 		inset 6px 6px 12px rgba(0,0,0,0.5), 
 		inset -6px -6px 12px rgba(255,255,255,0.02), 
 		6px 6px 16px rgba(0,0,0,0.4);
 
-	min-height: 250px;
+	max-height: 250px;
 
 	display: flex;
 	flex-direction: column;
@@ -88,13 +86,6 @@
 	text-transform: uppercase;
 }
 
-/* Contenido del papel */
-.contenido {
-  position: relative;
-  z-index: 2;
-}
-
-
 /* botoooon */
 .boton-papel {
   position: relative;
@@ -139,18 +130,18 @@
 
 /* Borde de papel desgastado */
 .boton-papel::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    border: 1px solid rgba(160, 140, 120, 0.4);
-    box-shadow: 
-      0 0 0 1px rgba(120, 100, 80, 0.2),
-      inset 0 0 15px rgba(120, 100, 80, 0.1);
-    z-index: 2;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid rgba(160, 140, 120, 0.4);
+  box-shadow: 
+    0 0 0 1px rgba(120, 100, 80, 0.2),
+    inset 0 0 15px rgba(120, 100, 80, 0.1);
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Efecto de irregularidades en los bordes */
@@ -200,32 +191,32 @@
   pointer-events: none;
 }
 
-/* Efecto de manchas de café/té */
+/* Efecto de manchas */
 .boton-papel .mancha {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.05;
-    z-index: 1;
-    pointer-events: none;
-    filter: blur(0.5px);
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(0.5px);
 }
 
 .boton-papel .mancha-1 {
-    width: 40px;
-    height: 25px;
-    background: #8d6e63;
-    top: 15%;
-    right: 10%;
-    transform: rotate(15deg);
+  width: 40px;
+  height: 25px;
+  background: #8d6e63;
+  top: 15%;
+  right: 10%;
+  transform: rotate(15deg);
 }
 
 .boton-papel .mancha-2 {
-    width: 25px;
-    height: 15px;
-    background: #5d4037;
-    bottom: 20%;
-    left: 10%;
-    transform: rotate(-10deg);
+  width: 25px;
+  height: 15px;
+  background: #5d4037;
+  bottom: 20%;
+  left: 10%;
+  transform: rotate(-10deg);
 }
 
 /* Texto del botón */

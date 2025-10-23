@@ -1,28 +1,30 @@
 .texto-plano_contenedor {
   width: 100%;
-  min-height: 250px;
+  height: auto;
   background: radial-gradient(circle at center, rgba(0,255,255,0.2), transparent 70%);
 	border: none;
-  border-radius: 6px;
   position: relative;
-	padding: 10px;
+	padding: 5px;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: block;
 }
 
 .texto-plano_contenedor svg {
-  display: block; 
+  display: block;
+
+  width: 100%; 
+  height: auto;
 }
 
 .texto-plano {
   position: absolute; 
-  top: 60px;          
-  left: 50px;         
-  right: 40px;        
-  bottom: 65px;       
+
+  top: 35px;          
+  left: 40px;    
+
+  height: 165px;
+  width: 78%;
+      
   color: #00ffff;         
   background-color: transparent; 
   padding: 5px;
@@ -32,6 +34,7 @@
   
   scrollbar-width: thin;
 	word-break: break-all;
+
 }
 
 .texto-plano p {
@@ -39,8 +42,8 @@
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	line-height: 1.5;
-	font-size: 14px;
-  white-space: pre-wrap
+	font-size: 1rem;
+  white-space: pre-wrap;
 }
 
 /* Cursor */
