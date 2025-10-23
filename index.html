@@ -9,7 +9,6 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/public/apple-logo.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/public/apple-logo.png">
 
-
 	<title>ENIGMA MACHINE M3 1934</title>
 </head>
 <body>
@@ -162,26 +161,11 @@
 	</main>
 
 	<script type="module" src="/scripts/socket.js"></script>
+
 	<script type="module" src="./scripts/ui/renderizar-maquina.js"></script>
-<script type="module" src="./scripts/ui/texto-plano.js"></script>
-	<script>
-		const $textoPlano = document.getElementById('texto-plano');
+	<script type="module" src="./scripts/ui/texto-plano.js"></script>
 
-		document.addEventListener('keydown', event => {
-			const tecla = event.key;
-    	const textoActual = $textoPlano.innerText;
-			
-			switch (tecla) {
-    		case 'Backspace': $textoPlano.innerText = textoActual.slice(0, -1); break;
-    		case 'Enter': $textoPlano.innerText += '\n'; break;
-    		case ' ': $textoPlano.innerText += ' '; break;
+	<script></script>
 
-    		default:
-					if (tecla.length === 1 && /^[a-zA-Z0-9.,!\-() ]$/.test(tecla)) 
-						$textoPlano.innerText += tecla.toUpperCase();
-      	break;
-			}
-		});
-	</script>
 </body>
 </html>
