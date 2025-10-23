@@ -1,5 +1,8 @@
 import { ALFABETO } from "../constantes.js";
 
+let estadoPlugboard = {};
+let plugboardSeleccionado = null;
+
 /* 
 <label class="plug" data-letra="A">
   <input type="checkbox" id="plug-A">
@@ -43,12 +46,50 @@ const renderizarPlugboard = () =>  {
   [...ALFABETO].forEach(letra => {
     const $plug = crearPlug(letra);
 
-    /* TODO: Añadir funciones manejadoras de eventos a los plugs*/
+    $plug.addEventListener('click', event => 
+      manejarClicPlug(letra)
+    );
+
     fragmento.appendChild($plug);
   });
   
   $plugboard.appendChild(fragmento);
-  /* TODO: Agregar evento para actualizar el estado de los plugs */
+  renderizarCables();
+}
+
+/* PRINCIPAL */
+const manejarClicPlug = letra => {
+  console.log('Manejar clic plug', letra);
+}
+
+/* MANEJO LÓGICO DE ESTADOS */
+const crearConexion = (letra1, letra2) => {
+  console.log('Creando conexion', letra1, letra2);
+}
+
+const eliminarConexion = (letra1, letra2) => {
+  console.log('Eliminando conexion', letra1, letra2);
+}
+
+/* INTERFAZ */
+const renderizarCables = () => {
+  console.log('Dibujando cablecito');
+}
+
+const eliminarConexionUI = (letra1, letra2) => {
+  console.log('Eliminando cablecito', letra1, letra2);
+}
+
+const actualizarListaConexionesUI = () => {
+  console.log('Actualizando lista de conexiones');
+}
+
+const actualizarEstadoPlugUI = () => {
+  console.log('Actualizando estado de plug');
+}
+
+const resetearPlugboardUI = () => {
+  console.log('Resetear plugboard');
 }
 
 renderizarPlugboard();
