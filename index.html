@@ -3,7 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./estilos/main.css">
+	<link rel="stylesheet" href="/estilos/main.css">
+	
+	<link rel="apple-touch-icon" sizes="180x180" href="/public/apple-logo.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/public/apple-logo.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/public/apple-logo.png">
+
 
 	<title>ENIGMA MACHINE M3 1934</title>
 </head>
@@ -131,7 +136,7 @@
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
 				</p>
 
-				<button class="boton-papel">
+				<button id="enviar-btn" class="boton-papel">
           <div class="borde-irregular"></div>
           <div class="esquina-doblada esquina-superior-izq"></div>
           <div class="esquina-doblada esquina-inferior-der"></div>
@@ -150,13 +155,33 @@
 			<!-- Buzón -->
 			<section class="buzon_contenedor">
 				<h2>Buzón</h2>
+				<ul id="buzon" class="buzon"></ul>
 			</section>
 		</section>
 
 	</main>
 
+	<script type="module" src="/scripts/socket.js"></script>
 	<script type="module" src="./scripts/ui/renderizar-maquina.js"></script>
-	<script type="module" src="./scripts/ui/texto-plano.js"></script>
+<script type="module" src="./scripts/ui/texto-plano.js"></script>
+	<script>
+		const $textoPlano = document.getElementById('texto-plano');
 
+		document.addEventListener('keydown', event => {
+			const tecla = event.key;
+    	const textoActual = $textoPlano.innerText;
+			
+			switch (tecla) {
+    		case 'Backspace': $textoPlano.innerText = textoActual.slice(0, -1); break;
+    		case 'Enter': $textoPlano.innerText += '\n'; break;
+    		case ' ': $textoPlano.innerText += ' '; break;
+
+    		default:
+					if (tecla.length === 1 && /^[a-zA-Z0-9.,!\-() ]$/.test(tecla)) 
+						$textoPlano.innerText += tecla.toUpperCase();
+      	break;
+			}
+		});
+	</script>
 </body>
 </html>

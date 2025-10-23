@@ -1,0 +1,33 @@
+{
+  "name": "enigma-machine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-test.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node --watch server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalaiboada/enigma-machine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dalaiboada/enigma-machine/issues"
+  },
+  "homepage": "https://github.com/dalaiboada/enigma-machine#readme",
+  "dependencies": {
+    "@types/socket.io": "3.0.1",
+    "cors": "2.8.5",
+    "dotenv": "17.2.3",
+    "express": "5.1.0",
+    "socket.io": "4.8.1",
+    "socket.io-client": "4.8.1"
+  }
+}
