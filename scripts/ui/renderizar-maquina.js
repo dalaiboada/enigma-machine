@@ -1,4 +1,4 @@
-import { ALFABETO } from './constantes.js';
+import { ALFABETO } from '../constantes.js';
 
 const TECLADO = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],

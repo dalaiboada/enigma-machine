@@ -10,4 +10,7 @@
   --color-glow: rgba(0, 255, 255, 0.3);
   --borde-neon: 0 0 8px var(--color-cyan), inset 0 0 12px rgba(0,255,255,0.2);
   --fuente: 'Orbitron', sans-serif;
+  --color-rotor-1: #ff2a6d;
+  --color-rotor-2: #05d9e8;
+  --color-rotor-3: #ffcc00;
 }

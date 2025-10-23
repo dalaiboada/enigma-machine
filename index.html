@@ -15,33 +15,57 @@
 
 			<!-- Rotores -->
 			<section class="rotores_contenedor">
-				<h2>Rotores</h2>
+				<h2>ROTORES</h2>
 
 				<div class="rotores">
+					<!-- Rotor 1 -->
 					<div class="rotor-contenedor">
-						<div class="indicador-posicion"></div>
+						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
-							<div class="circulo-centro">I</div>
-							<!-- insertar con javascript -->
+							<div class="disco-rotor">
+								<div class="circulo-centro">I</div>
+								<div class="marcas-rotor"></div>
+							</div>
+						</div>
+
+						<div class="controles-rotor">
+							<button class="btn-rotor"><-</button>
+							<button class="btn-rotor">-></button>
 						</div>
 					</div>
 
+					<!-- Rotor 2 -->
 					<div class="rotor-contenedor">
-						<div class="indicador-posicion"></div>
+						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
-							<div class="circulo-centro">II</div>
-							<!-- insertar con javascript -->
+							<div class="disco-rotor">
+								<div class="circulo-centro">Ii</div>
+								<div class="marcas-rotor"></div>
+							</div>
+						</div>
+
+						<div class="controles-rotor">
+							<button class="btn-rotor"><-</button>
+							<button class="btn-rotor">-></button>
 						</div>
 					</div>
 
+					<!-- Rotor 3 -->
 					<div class="rotor-contenedor">
-						<div class="indicador-posicion"></div>
+						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
-							<div class="circulo-centro">III</div>
-							<!-- insertar con javascript -->
+							<div class="disco-rotor">
+								<div class="circulo-centro">III</div>
+								<div class="marcas-rotor"></div>
+							</div>
+						</div>
+
+						<div class="controles-rotor">
+							<button class="btn-rotor"><-</button>
+							<button class="btn-rotor">-></button>
 						</div>
 					</div>
 				</div>
@@ -49,7 +73,7 @@
 			
 			<!-- Lampboard -->
 			<section class="lampboard_contenedor">
-				<h2>Lampboard</h2>
+				<h2>LAMPBOARD</h2>
 
 				<div class="lampboard" id="lampboard"></div>
 			</section>
@@ -65,7 +89,7 @@
 			
 			<!-- Plugboard -->
 			<section class="plugboard_contenedor">
-				<h2>Plugboard</h2>
+				<h2>PLUGBOARD</h2>
 
 				<div class="plugboard"></div>
 			</section>
@@ -100,7 +124,7 @@
 
 			<!-- Texto Cifrado -->
 			<section class="contenedor-papel">
-				<h2>Texto Cifrado</h2>
+				<h2>TEXTO CIFRADO</h2>
 
 				<p class="texto-cifrado">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
@@ -131,26 +155,8 @@
 
 	</main>
 
-	<script type="module" src="./scripts/renderizar-maquina.js"></script>
+	<script type="module" src="./scripts/ui/renderizar-maquina.js"></script>
+	<script type="module" src="./scripts/ui/texto-plano.js"></script>
 
-	<script>
-		const $textoPlano = document.getElementById('texto-plano');
-
-		document.addEventListener('keydown', event => {
-			const tecla = event.key;
-    	const textoActual = $textoPlano.innerText;
-			
-			switch (tecla) {
-    		case 'Backspace': $textoPlano.innerText = textoActual.slice(0, -1); break;
-    		case 'Enter': $textoPlano.innerText += '\n'; break;
-    		case ' ': $textoPlano.innerText += ' '; break;
-
-    		default:
-					if (tecla.length === 1 && /^[a-zA-Z0-9.,!\-() ]$/.test(tecla)) 
-						$textoPlano.innerText += tecla.toUpperCase();
-      	break;
-			}
-		});
-	</script>
 </body>
 </html>

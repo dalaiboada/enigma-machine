@@ -13,9 +13,9 @@
     * [ ] Teclado de lamparas
     * [ ] Rotores
   * [ ] Pantallas de salida
-    * [ ] Texto plano
-    * [ ] Texto encriptado
-  * [ ] Botón para enviar mensaje
+    * [X] Texto plano
+    * [X] Texto encriptado
+  * [X] Botón para enviar mensaje
 
 #### BACKEND
 

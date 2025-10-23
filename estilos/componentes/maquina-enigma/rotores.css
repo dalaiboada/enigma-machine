@@ -4,30 +4,99 @@
   gap: 20px;
   border-radius: 10px;
   padding: 30px;
-  box-shadow:
-    inset 0 0 10px #0ff2,
-    0 0 20px #0ff1;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 255, 0.1),
+    0 0 20px rgba(0, 255, 255, 0.2);
+  background-color: var(--color-panel);
+  position: relative;
+}
+
+.rotores_contenedor h2 {
+  color: var(--color-h1);
+  text-shadow: 0 0 10px var(--color-glow);
+  font-weight: 700;
+  margin-top: 0;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--color-cyan);
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
 
 .rotores {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+  position: relative;
 }
 
-/* Rejilla interna dentro de cada rotor */
+.rotor-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.indicador-posicion {
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-cyan);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-cyan);
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 255, 0.2),
+    0 0 8px rgba(0, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.indicador-posicion::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 255, 0.1) 50%, 
+    transparent 100%);
+  animation: slide-indicadores 3s infinite linear;
+}
+
 .rotor {
   position: relative;
-  width: 200px;
-  height: 160px;
+  width: 100%;
+  height: 200px;
   background: radial-gradient(circle at center, #0c1018 60%, #080a0f 100%);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow:
-    inset 0 0 8px #00f6ff33,
-    0 0 10px #00f6ff22;
+  box-shadow: 
+    inset 0 0 15px rgba(0, 246, 255, 0.3),
+    0 0 20px rgba(0, 246, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* Capa de rejilla luminosa interna */
+.rotor:hover {
+  box-shadow: 
+    inset 0 0 20px rgba(0, 246, 255, 0.5),
+    0 0 30px rgba(0, 246, 255, 0.4);
+}
+
+/* Rejilla */
 .rotor::before {
   content: "";
   position: absolute;
@@ -43,27 +112,187 @@
   z-index: 0;
 }
 
-/* Contenido del rotor sobre la rejilla */
-.rotor-content {
+.rotor::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    var(--color-cyan) 50%, 
+    transparent 100%);
+  opacity: 0.1;
+  z-index: -1;
+  animation: rotar 15s linear infinite;
+}
+
+.disco-rotor {
   position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 0 0 4px rgba(0, 0, 0, 0.8),
+    0 0 0 6px rgba(0, 255, 255, 0.7),
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    0 5px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Efecto del disco */
+.disco-rotor::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(50, 50, 50, 0.9) 20%,
+    rgba(100, 100, 100, 0.9) 40%,
+    rgba(150, 150, 150, 0.9) 60%,
+    rgba(100, 100, 100, 0.9) 80%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
   z-index: 1;
-  color: cyan;
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.2em;
+}
+
+.marcas-rotor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Se añade en js*/
+.marca-rotor {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  left: 50%;
+  top: 8px;
+  transform-origin: 50% 62px;
+}
+
+/* Se añade en js*/
+.marca-rotor.principal {
+  height: 12px;
+  width: 3px;
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px var(--color-cyan);
 }
 
 .circulo-centro {
-  width: 60px;
-  height: 60px;
+  /* Todo */
+  border: 1px solid red;
+  position: relative;
+  width: 80px;
+  height: 80px;
   background: rgba(0,255,255,0.1);
-  border: 1px solid rgba(0,255,255,0.8);
+  border: 3px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #00ffff;
   font-weight: 700;
+  font-size: 26px;
   text-shadow: 0 0 10px #00ffff;
   box-shadow: inset 0 0 10px rgba(0,255,255,0.3);
+  transition: all 0.3s ease;
+  z-index: 3;
+  text-shadow: 0 0 10px #000, 0 0 5px #000;
+  color: #fff;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.8);
 }
+
+.rotor-contenedor:nth-child(1) .circulo-centro {
+  background: radial-gradient(circle at 30% 30%, #ff2a6d, #8a0035);
+  border-color: #ff2a6d;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 10px #ff2a6d,
+    inset 0 0 10px rgba(255, 42, 109, 0.5);
+}
+
+.rotor-contenedor:nth-child(2) .circulo-centro {
+  background: radial-gradient(circle at 30% 30%, #05d9e8, #005c66);
+  border-color: #05d9e8;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 10px #05d9e8,
+    inset 0 0 10px rgba(5, 217, 232, 0.5);
+}
+
+.rotor-contenedor:nth-child(3) .circulo-centro {
+  background: radial-gradient(circle at 30% 30%, #ffcc00, #b38f00);
+  border-color: #ffcc00;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 10px #ffcc00,
+    inset 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Para pensar (.girando se añade en js)*/
+.rotor-contenedor.girando .disco-rotor {
+  animation: girar-disco 0.5s ease-out;
+}
+
+.controles-rotor {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.btn-rotor {
+  padding: 8px 15px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid var(--color-cyan);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-family: var(--fuente);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px var(--color-glow);
+  font-size: 12px;
+}
+
+.btn-rotor:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+
+
+/* ANIMACIONES */
+@keyframes slide-indicadores {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes rotar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
