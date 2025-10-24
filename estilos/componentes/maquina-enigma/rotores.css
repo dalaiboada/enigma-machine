@@ -194,8 +194,6 @@
 }
 
 .circulo-centro {
-  /* Todo */
-  border: 1px solid red;
   position: relative;
   width: 80px;
   height: 80px;
@@ -246,7 +244,7 @@
     inset 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
-/* Para pensar (.girando se añade en js)*/
+/* .girando se añade en js*/
 .rotor-contenedor.girando .disco-rotor {
   animation: girar-disco 0.5s ease-out;
 }
@@ -256,7 +254,6 @@
   gap: 10px;
   margin-top: 10px;
 }
-
 
 .btn-rotor {
   padding: 8px 15px;
@@ -288,6 +285,15 @@
 }
 
 @keyframes rotar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes girar-disco {
   0% {
     transform: rotate(0deg);
   }

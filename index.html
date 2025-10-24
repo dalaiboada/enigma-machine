@@ -23,53 +23,53 @@
 
 				<div class="rotores">
 					<!-- Rotor 1 -->
-					<div class="rotor-contenedor">
+					<div class="rotor-contenedor" id="rotor-1_contenedor">
 						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
 							<div class="disco-rotor">
 								<div class="circulo-centro">I</div>
-								<div class="marcas-rotor"></div>
+								<div class="marcas-rotor" id="marcas-rotor-1"></div>
 							</div>
 						</div>
 
 						<div class="controles-rotor">
-							<button class="btn-rotor"><-</button>
-							<button class="btn-rotor">-></button>
+							<button class="btn-rotor" data-rotor="1" data-direccion="-1"><-</button>
+							<button class="btn-rotor" data-rotor="1" data-direccion="1">-></button>
 						</div>
 					</div>
 
 					<!-- Rotor 2 -->
-					<div class="rotor-contenedor">
+					<div class="rotor-contenedor"  id="rotor-2_contenedor">
 						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
 							<div class="disco-rotor">
-								<div class="circulo-centro">Ii</div>
-								<div class="marcas-rotor"></div>
+								<div class="circulo-centro">II</div>
+								<div class="marcas-rotor" id="marcas-rotor-2"></div>
 							</div>
 						</div>
 
 						<div class="controles-rotor">
-							<button class="btn-rotor"><-</button>
-							<button class="btn-rotor">-></button>
+							<button class="btn-rotor" data-rotor="2" data-direccion="-1"><-</button>
+							<button class="btn-rotor" data-rotor="2" data-direccion="1">-></button>
 						</div>
 					</div>
 
 					<!-- Rotor 3 -->
-					<div class="rotor-contenedor">
+					<div class="rotor-contenedor" id="rotor-3_contenedor">
 						<div class="indicador-posicion">A</div>
 
 						<div class="rotor" id="rotor">
 							<div class="disco-rotor">
 								<div class="circulo-centro">III</div>
-								<div class="marcas-rotor"></div>
+								<div class="marcas-rotor" id="marcas-rotor-3"></div>
 							</div>
 						</div>
 
 						<div class="controles-rotor">
-							<button class="btn-rotor"><-</button>
-							<button class="btn-rotor">-></button>
+							<button class="btn-rotor" data-rotor="3" data-direccion="-1"><-</button>
+							<button class="btn-rotor" data-rotor="3" data-direccion="1">-></button>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,15 @@
 			<section class="plugboard_contenedor">
 				<h2>PLUGBOARD</h2>
 
+				<svg class="conexiones" width="100%" height="100%"></svg>
 				<div class="plugboard"></div>
+
+				<div class="conexiones_contenedor">
+          <h3>CONEXIONES ACTIVAS</h3>
+          <div class="lista-conexiones" id="lista-conexiones">
+            <!-- Aquí se mostrarán las conexiones (a<->b) con js 😝-->
+          </div>
+        </div>
 			</section>
 		</section>
 
@@ -130,10 +138,7 @@
 			<section class="contenedor-papel">
 				<h2>TEXTO CIFRADO</h2>
 
-				<p class="texto-cifrado">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-				</p>
+        <textarea id="texto-cifrado" class="texto-cifrado" readonly></textarea>
 
 				<button id="enviar-btn" class="boton-papel">
           <div class="borde-irregular"></div>
