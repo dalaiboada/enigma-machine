@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/dalaiboada/enigma-machine#readme",
   "dependencies": {
+    "@libsql/client": "^0.15.15",
     "@types/socket.io": "3.0.1",
     "cors": "2.8.5",
     "dotenv": "17.2.3",
