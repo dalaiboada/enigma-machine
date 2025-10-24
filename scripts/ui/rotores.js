@@ -1,28 +1,15 @@
 import { ALFABETO, estado } from '../constantes.js'
 import { getCaracter } from '../utilidades.js'
+import { notificarPosiciones } from '../enigma-core.js'
 
 const ROTORES_ESTADO = [
-  estado.rotorDerecho, 
+  estado.rotorIzquierdo,
   estado.rotorMedio, 
-  estado.rotorIzquierdo
+  estado.rotorDerecho, 
 ];
 
 
 /* --- FUNCIONES DE INTERFAZ (UI) --- */
-
-const actualizarIndicadoresPosicion = () => {
-  console.log('Actualizando indicadores de posición UI...');
-  
-  for (let i = 1; i <= 3; i++) {
-    const rotor = ROTORES_ESTADO[i - 1];
-    
-    const $indicador = document.querySelector(`#rotor-${i}_contenedor .indicador-posicion`);
-    
-    const indicador = getCaracter(rotor.posicion);
-    $indicador.textContent = indicador;
-    estado
-  }
-};
 
 const renderizarMarcasRotores = () => {
   console.log('Renderizando marcas de rotores...');
@@ -43,8 +30,6 @@ const renderizarMarcasRotores = () => {
       $marcasContenedor.appendChild($marca);
     }
   }
-    
-  actualizarIndicadoresPosicion();
 };
 
 /* --- FUNCIÓN DE LÓGICA (ESTADO) --- */
@@ -66,6 +51,9 @@ const girarRotor = (numeroRotor, direccion) => {
     renderizarMarcasRotores(); 
     $rotorContenedor.classList.remove('girando');
   }, 500);
+
+  estado[ROTORES_ESTADO[numeroRotor - 1].posicion] = rotor.posicion;
+  notificarPosiciones();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

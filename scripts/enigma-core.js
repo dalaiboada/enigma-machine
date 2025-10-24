@@ -110,4 +110,4 @@ const encriptar = caracter => {
   return { salidaLetra, pasos };
 }
 
-export { encriptar, suscribirPosiciones };
+export { encriptar, suscribirPosiciones, notificarPosiciones };
