@@ -6,7 +6,6 @@ const ROTORES_ESTADO = [
   estado.rotorIzquierdo
 ];
 
-
 /* --- FUNCIONES DE INTERFAZ (UI) --- */
 
 const actualizarIndicadoresPosicion = () => {
@@ -45,7 +44,6 @@ const renderizarMarcasRotores = () => {
 };
 
 /* --- FUNCIÓN DE LÓGICA (ESTADO) --- */
-
 const girarRotor = (numeroRotor, direccion) => {
   console.log(`Girar rotor ${numeroRotor} en dirección ${direccion}`);
   
