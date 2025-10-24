@@ -1,12 +1,16 @@
 /* TODO: porque no hice nada hehe xdon 😝 */
 
+/* .buzon_contenedor {
+    
+} */
+
 .buzon {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-right: 4px;
     list-style: none;
-    max-height: 180px;
+    max-height: 700px;
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;  

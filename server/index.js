@@ -78,7 +78,7 @@ io.on('connection', async (socket) => {
   if (!socket.recovered) {
     try {
       const results = await db.execute({
-        sql: 'SELECT * FROM messages WHERE id > (:id) ORDER BY id DESC',
+        sql: 'SELECT * FROM messages WHERE id > (:id) ORDER BY id ASC',
         args: [socket.handshake.auth.serverOffset ?? 0],
       });
 

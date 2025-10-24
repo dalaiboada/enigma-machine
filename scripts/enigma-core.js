@@ -65,8 +65,9 @@ const moverRotores = () => {
   }
 }
 
+// Función para encriptar un carácter, retorna el carácter resultante y el array de pasos
 const encriptar = caracter => {
-  const pasos = [];  
+  const pasos = [];  // Array de pasos { paso: string, valor: string }
 
   // 0. Mover rotores
   moverRotores();

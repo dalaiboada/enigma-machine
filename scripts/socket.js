@@ -24,10 +24,11 @@ socket.on('connect', () => {
 const enviarBtn = document.getElementById('enviar-btn');
 enviarBtn.addEventListener('click', () => {
 	console.log('enviando');
-	const msg = document.getElementById('texto-plano').innerText;
+	const msg = document.getElementById('texto-cifrado').value;
 	console.log(msg);
 	socket.emit('chat message', msg);
 	document.getElementById('texto-plano').innerText = '';
+	document.getElementById('texto-cifrado').value = '';
 });
 
 socket.on('chat message', async ({ msg, serverOffset, username }) => {

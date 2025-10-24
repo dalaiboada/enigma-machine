@@ -13,8 +13,9 @@ suscribirPosiciones(actualizarUI);
 console.clear();
 console.log('\n--- Simulación de encriptación ---');
 const letra = 'A';
-console.log(`Encriptando letra: ${letra} -> ${encriptar(letra).salidaLetra}`);
-console.log(`Encriptando letra: ${letra} -> ${encriptar(letra).pasos}`);
+const { salidaLetra, pasos } = encriptar(letra);
+console.log(`Encriptando letra: ${letra} -> ${salidaLetra}`);
+console.log(`Pasos: ${pasos.map(paso => `${paso.paso}: ${paso.valor}`).join(', \n')}`);
 
 
 
