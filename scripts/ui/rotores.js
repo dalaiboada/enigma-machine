@@ -1,4 +1,5 @@
 import { ALFABETO, estado } from '../constantes.js'
+import { getCaracter } from '../utilidades.js'
 
 const ROTORES_ESTADO = [
   estado.rotorDerecho, 
@@ -17,7 +18,9 @@ const actualizarIndicadoresPosicion = () => {
     
     const $indicador = document.querySelector(`#rotor-${i}_contenedor .indicador-posicion`);
     
-    $indicador.textContent = ALFABETO[rotor.posicion];
+    const indicador = getCaracter(rotor.posicion);
+    $indicador.textContent = indicador;
+    estado
   }
 };
 
@@ -80,12 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 renderizarMarcasRotores();
-import { getCaracter } from '../utilidades.js'
 
 const actualizarRotores = (posiciones) => {
-  const $rotorDerecho = document.getElementById('rotor-derecho');
-  const $rotorMedio = document.getElementById('rotor-medio');
-  const $rotorIzquierdo = document.getElementById('rotor-izquierdo');
+  const $rotorDerecho = document.getElementById('rotor-3_indicador');
+  const $rotorMedio = document.getElementById('rotor-2_indicador');
+  const $rotorIzquierdo = document.getElementById('rotor-1_indicador');
 
   $rotorDerecho.innerText = getCaracter(posiciones.derecho);
   $rotorMedio.innerText = getCaracter(posiciones.medio);
