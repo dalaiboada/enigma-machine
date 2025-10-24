@@ -34,7 +34,7 @@ await db.execute(`
   CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     content TEXT,
-    username TEXT,
+    USUARIO TEXT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
@@ -53,30 +53,30 @@ app.use(express.static(join(__dirname, '../scripts')));
 //---------------- SOCKETS ----------------//
 io.on('connection', async (socket) => {
   console.log('a user has connected!');
-  const username = socket.handshake.auth.username ?? "Anonymous";
+  const USUARIO = socket.handshake.auth.USUARIO ?? "Anonymous";
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
-  socket.on('chat message', async (msg) => {
+  socket.on('chat message', async (MENSAJE) => {
     let result;
     const timestamp = new Date().toISOString();
     try {
       result = await db.execute({
-        sql: 'INSERT INTO messages (content, username, timestamp) VALUES (:content, :username, :timestamp)',
-        args: { content: msg, username, timestamp },
+        sql: 'INSERT INTO messages (content, USUARIO, timestamp) VALUES (:content, :USUARIO, :timestamp)',
+        args: { content: MENSAJE, USUARIO, timestamp },
       });
     } catch (error) {
       console.error(error);
       return;
     }
 
-    console.log(msg);
+    console.log(MENSAJE);
     io.emit('chat message', { 
-      msg, 
+      MENSAJE, 
       serverOffset: result.lastInsertRowid.toString(), 
-      username,
+      USUARIO,
       timestamp,
     });
   });
@@ -91,9 +91,9 @@ io.on('connection', async (socket) => {
 
       results.rows.forEach((row) => {
         socket.emit('chat message', { 
-          msg: row.content, 
+          MENSAJE: row.content, 
           serverOffset: row.id, 
-          username: row.username,
+          USUARIO: row.USUARIO,
           timestamp: row.timestamp,
         });
       });
@@ -125,12 +125,12 @@ app.get('messages', async (req, res) => {
 // Enviar un nuevo mensaje
 app.post('messages', async (req, res) => {
   try {
-    const { content, username } = req.body;
+    const { content, USUARIO } = req.body;
     const result = await db.execute({
-      sql: 'INSERT INTO messages (content, username) VALUES (:content, :username)',
-      args: { content, username },
+      sql: 'INSERT INTO messages (content, USUARIO) VALUES (:content, :USUARIO)',
+      args: { content, USUARIO },
     });
-    io.emit('chat message', content, result.lastInsertRowid.toString(), username);
+    io.emit('chat message', content, result.lastInsertRowid.toString(), USUARIO);
     res.json({ id: result.lastInsertRowid.toString() });
   } catch (error) {
     console.error(error);

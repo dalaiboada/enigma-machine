@@ -14,9 +14,9 @@ const REFLECTORES = {
 };
 
 const estado = {
-  rotorIzquierdo: { tipo:'I', posicion: 4 },
-  rotorMedio:  { tipo:'II', posicion: 3 },
-  rotorDerecho:{ tipo:'III', posicion: 19 },
+  rotorIzquierdo: { tipo:'I', posicion: 0 },
+  rotorMedio:  { tipo:'II', posicion: 0 },
+  rotorDerecho:{ tipo:'III', posicion: 0 },
   reflector: 'B',
   enchufes: {},
 };
