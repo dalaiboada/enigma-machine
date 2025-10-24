@@ -31,11 +31,29 @@ enviarBtn.addEventListener('click', () => {
 	document.getElementById('texto-cifrado').value = '';
 });
 
-socket.on('chat message', async ({ msg, serverOffset, username }) => {
-	console.log(msg, serverOffset, username);
-	const buzon = document.getElementById('buzon');
+const createMessageElement = (msg, username, timestamp) => {
 	const li = document.createElement('li');
-	li.innerText = msg;
+	const text = document.createElement('span');
+	const div = document.createElement('div');
+	const time = document.createElement('small');
+	const user = document.createElement('small');
+
+	text.innerText = msg;
+	time.innerText = timestamp;
+	user.innerText = username;
+
+	li.appendChild(text);
+	li.appendChild(div);
+	div.appendChild(time);
+	div.appendChild(user);
+
+	return li;
+}
+
+socket.on('chat message', async ({ msg, serverOffset, username, timestamp }) => {
+	console.log(msg, serverOffset, username, timestamp);
+	const buzon = document.getElementById('buzon');
+	const li = createMessageElement(msg, username, timestamp);
 	buzon.prepend(li);
 	buzon.scrollTop = 0;
 });
