@@ -7,14 +7,12 @@
  
   border-radius: 5px;
 
-  overflow: hidden;
+  height: 250px;
 	
 	box-shadow: 
 		inset 6px 6px 12px rgba(0,0,0,0.5), 
 		inset -6px -6px 12px rgba(255,255,255,0.02), 
 		6px 6px 16px rgba(0,0,0,0.4);
-
-	max-height: 250px;
 
 	display: flex;
 	flex-direction: column;
@@ -255,16 +253,40 @@
 }
 
 .texto-cifrado {
-  padding: 5px;
-	font-size: 1rem;
-	line-height: 1.2;
-	overflow-y: auto;
-	max-height: 100%;
-	font-family: 'Courier New', Courier, monospace;
-	color: #3e2723;
-	text-transform: uppercase;
-	border-bottom: 1px solid rgba(0,0,0,0.1);
-	margin-bottom: 10px;
-	scrollbar-color:  #68413af8 #e3dccb;
-	scrollbar-width: thin;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-y: auto;
+  height: 180px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #3e2723;
+  background-color: transparent;
+  text-transform: uppercase;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin: 5px 0 15px 0;
+  scrollbar-color: #68413af8 #e3dccb;
+  scrollbar-width: thin;
+  resize: none;
+  flex-grow: 1;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Estilos para la barra de desplazamiento */
+.texto-cifrado::-webkit-scrollbar {
+  width: 8px;
+}
+
+.texto-cifrado::-webkit-scrollbar-track {
+  background: #e3dccb;
+  border-radius: 4px;
+}
+
+.texto-cifrado::-webkit-scrollbar-thumb {
+  background-color: #68413af8;
+  border-radius: 4px;
 }

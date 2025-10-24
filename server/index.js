@@ -33,8 +33,9 @@ const db = createClient({
 await db.execute(`
   CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    content TEXT ,
-    username TEXT
+    content TEXT,
+    username TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
 
@@ -60,10 +61,11 @@ io.on('connection', async (socket) => {
 
   socket.on('chat message', async (msg) => {
     let result;
+    const timestamp = new Date().toISOString();
     try {
       result = await db.execute({
-        sql: 'INSERT INTO messages (content, username) VALUES (:content, :username)',
-        args: { content: msg, username },
+        sql: 'INSERT INTO messages (content, username, timestamp) VALUES (:content, :username, :timestamp)',
+        args: { content: msg, username, timestamp },
       });
     } catch (error) {
       console.error(error);
@@ -71,14 +73,19 @@ io.on('connection', async (socket) => {
     }
 
     console.log(msg);
-    io.emit('chat message', { msg, serverOffset: result.lastInsertRowid.toString(), username });
+    io.emit('chat message', { 
+      msg, 
+      serverOffset: result.lastInsertRowid.toString(), 
+      username,
+      timestamp,
+    });
   });
 
 
   if (!socket.recovered) {
     try {
       const results = await db.execute({
-        sql: 'SELECT * FROM messages WHERE id > (:id) ORDER BY id DESC',
+        sql: 'SELECT * FROM messages WHERE id > (:id) ORDER BY id ASC',
         args: [socket.handshake.auth.serverOffset ?? 0],
       });
 
@@ -86,7 +93,8 @@ io.on('connection', async (socket) => {
         socket.emit('chat message', { 
           msg: row.content, 
           serverOffset: row.id, 
-          username: row.username
+          username: row.username,
+          timestamp: row.timestamp,
         });
       });
     } catch (error) {
