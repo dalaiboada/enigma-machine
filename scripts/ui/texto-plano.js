@@ -34,7 +34,16 @@ const manejarInputTeclado = event => {
         const letraCifrada = encriptar(nuevaLetra).salidaLetra.toUpperCase();
         $textoCifrado.value += letraCifrada;
         $textoCifrado.scrollTop = $textoCifrado.scrollHeight;
+
+        console.log('Letra cifrada: ', letraCifrada);
+        const $lampboardLetter = document.getElementById(letraCifrada);
+        console.log($lampboardLetter)
+        $lampboardLetter.style.backgroundColor = 'rgb(0, 189, 91)';
+        setTimeout(() => {
+          $lampboardLetter.style.backgroundColor = 'transparent';
+        }, 1000);
       }
+
       break;
   }
 }

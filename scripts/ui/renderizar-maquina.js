@@ -25,6 +25,7 @@ const renderizarLampboard = () => {
   [...ALFABETO].forEach(letra => {
     const $lamp = document.createElement('div');
     $lamp.classList.add('lamp');
+    $lamp.id = letra;
     
     $lamp.textContent = letra;
     fragmento.appendChild($lamp);
