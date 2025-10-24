@@ -6,6 +6,8 @@ let plugSeleccionado = null;
 /* TODO: 
   - Crear un observador para notificar cambios de estado
   - [OPCIONAL] MEJORAR FUNCIÓN DE ORQUESTACIÓN: manejarClicPlug
+  - Eliminar console.logs de debug
+  - [PENSANDO] Crear boton para resetear
 */
 
 /* 
@@ -146,35 +148,35 @@ const eliminarConexion = (letra1, letra2) => {
 const renderizarCables = () => {
   console.log('Dibujando cablecito');
 
-  const svg = document.querySelector('.conexiones');
-  svg.innerHTML = '';
+  const $svg = document.querySelector('.conexiones');
+  $svg.innerHTML = '';
   
   Object.keys(estadoPlugboard).forEach(letra1 => {
     const letra2 = estadoPlugboard[letra1];
     
     // Solo dibujar una vez por par
     if (letra1 < letra2) {
-      const plug1 = document.querySelector(`[data-letra="${letra1}"]`);
-      const plug2 = document.querySelector(`[data-letra="${letra2}"]`);
+      const $plug1 = document.querySelector(`[data-letra="${letra1}"]`);
+      const $plug2 = document.querySelector(`[data-letra="${letra2}"]`);
       
-      if (plug1 && plug2) {
-        const rect1 = plug1.getBoundingClientRect();
-        const rect2 = plug2.getBoundingClientRect();
-        const svgRect = svg.getBoundingClientRect();
+      if ($plug1 && $plug2) {
+        const rect1 = $plug1.getBoundingClientRect();
+        const rect2 = $plug2.getBoundingClientRect();
+        const svgRect = $svg.getBoundingClientRect();
         
         const x1 = rect1.left + rect1.width/2 - svgRect.left;
         const y1 = rect1.top + rect1.height/2 - svgRect.top;
         const x2 = rect2.left + rect2.width/2 - svgRect.left;
         const y2 = rect2.top + rect2.height/2 - svgRect.top;
         
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', x1);
-        line.setAttribute('y1', y1);
-        line.setAttribute('x2', x2);
-        line.setAttribute('y2', y2);
-        line.classList.add('conexion-activa');
+        const $line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        $line.setAttribute('x1', x1);
+        $line.setAttribute('y1', y1);
+        $line.setAttribute('x2', x2);
+        $line.setAttribute('y2', y2);
+        $line.classList.add('conexion-activa');
         
-        svg.appendChild(line);
+        $svg.appendChild($line);
       }
     }
   });
@@ -190,8 +192,8 @@ const eliminarConexionUI = (letra1, letra2) => {
 const actualizarListaConexionesUI = () => {
   console.log('Actualizando lista de conexiones');
 
-  const lista = document.getElementById('lista-conexiones');
-  lista.innerHTML = '';
+  const $lista = document.getElementById('lista-conexiones');
+  $lista.innerHTML = '';
   
   const conexionesMostradas = new Set();
   
@@ -203,15 +205,15 @@ const actualizarListaConexionesUI = () => {
       conexionesMostradas.add(letra1);
       conexionesMostradas.add(letra2);
       
-      const item = document.createElement('div');
-      item.classList.add('conexion-item');
+      const $item = document.createElement('div');
+      $item.classList.add('conexion-item');
 
-      item.innerHTML = `
+      $item.innerHTML = `
         <span>${letra1} ↔ ${letra2}</span>
         <button class="eliminar-conexion" data-letra1="${letra1}" data-letra2="${letra2}">×</button>
       `;
       
-      lista.appendChild(item);
+      $lista.appendChild($item);
     }
   });
   

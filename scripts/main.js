@@ -4,6 +4,7 @@ import './socket.js';
 import './ui/renderizar-maquina.js';
 import './ui/texto-plano.js';
 import './ui/plugboard.js';
+import './ui/rotores.js';
 
 // Logica
 import { suscribirPosiciones } from './enigma-core.js';
