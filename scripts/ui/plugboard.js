@@ -1,4 +1,5 @@
 import { ALFABETO } from "../constantes.js";
+import { notificarPosiciones } from '../enigma-core.js'
 
 let estadoPlugboard = {};
 let plugSeleccionado = null;
@@ -256,5 +257,9 @@ const resetearPlugboardUI = () => {
   renderizarCables();
   actualizarListaConexionesUI();
 }
+
+/* NOTIFICAR POSICIONES */
+notificarPosiciones();
+
 
 renderizarPlugboard();
